@@ -32,7 +32,15 @@ public class Invoice {
 
     private Id id;
 
-    Invoice(Id invoiceId, ClientData client) {
+    public static Invoice create(Id invoiceId, ClientData client) {
+        return new Invoice(invoiceId, client);
+    }
+
+    public static Invoice create(ClientData client) {
+        return new Invoice(Id.generate(), client);
+    }
+
+    private Invoice(Id invoiceId, ClientData client) {
         this.id = invoiceId;
         this.client = client;
         this.items = new ArrayList<InvoiceLine>();
