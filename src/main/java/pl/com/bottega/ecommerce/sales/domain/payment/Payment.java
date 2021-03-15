@@ -24,7 +24,15 @@ public class Payment {
 
     private Id aggregateId;
 
-    public Payment(Id aggregateId, ClientData clientData, Money amount) {
+    public static Payment create(Id aggregateId, ClientData clientData, Money amount) {
+        return new Payment(aggregateId, clientData, amount);
+    }
+
+    public static Payment create(ClientData clientData, Money amount) {
+        return new Payment(Id.generate(), clientData, amount);
+    }
+
+    private Payment(Id aggregateId, ClientData clientData, Money amount) {
         this.aggregateId = aggregateId;
         this.clientData = clientData;
         this.amount = amount;
